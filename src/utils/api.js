@@ -40,4 +40,18 @@ export const joinQueue = async (username) => {
     return response.data;
 };
 
+export const getQueue = async () => {
+    const response = await api.get('/api/v1/commissar/queue');
+    return response.data;
+};
+
+export const removeFromQueue = async (username) => {
+    await api.post('/api/v1/commissar/queue/delete', { username });
+};
+
+export const checkCommissarReady = async (username) => {
+    const response = await api.get(`/api/v1/recruit/queue/ready/${encodeURIComponent(username)}`);
+    return response.data; // Ожидается boolean
+};
+
 export default api;
