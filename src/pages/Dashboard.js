@@ -9,7 +9,7 @@ import {
     CardContent,
     CircularProgress,
     Fade, // Добавляем компонент для плавных переходов
-    Slide // Добавляем для плавного появления/исчезания
+     Skeleton // Добавляем для плавного появления/исчезания
 } from '@mui/material';
 import { useAuth } from '../context/AuthContext';
 import { checkCommissarReady, joinQueue } from '../utils/api';
@@ -19,33 +19,23 @@ const Dashboard = () => {
     const [commissarReady, setCommissarReady] = useState(null);
     const [inQueue, setInQueue] = useState(false);
     const [loading, setLoading] = useState({
-        status: false,
         queue: false
     });
     const [error, setError] = useState(null);
-    const [prevStatus, setPrevStatus] = useState(null); // Для плавного перехода
 
-    const checkStatus = async () => {
+    const updateStatusIfChanged = async () => {
         if (!user?.username) return;
 
         try {
-            setLoading(prev => ({...prev, status: true}));
-            const isReady = await checkCommissarReady(user.username);
-
-            // Плавное обновление статуса
-            setPrevStatus(commissarReady);
-            setTimeout(() => {
-                setCommissarReady(isReady);
-                setPrevStatus(null);
-            }, 300);
-
-            setError(null);
+            const isCommissarReady = await checkCommissarReady(user?.username);
+            if (isCommissarReady !== commissarReady) {
+                setCommissarReady(isCommissarReady)
+            }
         } catch (err) {
+            setCommissarReady(null)
             setError('Ошибка проверки статуса');
-        } finally {
-            setLoading(prev => ({...prev, status: false}));
         }
-    };
+    }
 
 
     // Добавление в очередь
@@ -64,8 +54,8 @@ const Dashboard = () => {
 
     // Запускаем проверку статуса при загрузке и каждые 3 секунды
     useEffect(() => {
-        checkStatus();
-        const interval = setInterval(checkStatus, 5000);
+        updateStatusIfChanged();
+        const interval = setInterval(updateStatusIfChanged, 5000);
         return () => clearInterval(interval);
     }, [user?.username]);
 
@@ -83,48 +73,24 @@ const Dashboard = () => {
                             Статус комиссара:
                         </Typography>
 
-                        {loading.status ? (
-                            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                                <CircularProgress size={24} />
-                            </Box>
-                        ) : error ? (
-                            <Slide in={!!error} direction="down">
-                                <Alert severity="error">{error}</Alert>
-                            </Slide>
+                        {error !== null ? (
+                            <Alert severity="error">{error}</Alert>
                         ) : (
                             <Box sx={{ position: 'relative', height: 60 }}>
-                                {/* Старый статус (исчезает) */}
-                                {prevStatus !== null && (
-                                    <Fade in={prevStatus !== null} timeout={300}>
+                                {commissarReady !== null ? (
+                                    <Fade in={true} timeout={300}>
                                         <Box sx={{ position: 'absolute', width: '100%' }}>
                                             <Alert
-                                                severity={prevStatus ? "success" : "warning"}
+                                                severity={commissarReady ? "success" : "warning"}
                                                 sx={{ transition: 'opacity 0.3s ease' }}
                                             >
-                                                {prevStatus
+                                                {commissarReady
                                                     ? "Комиссар готов вас принять"
                                                     : "Комиссар занят, ожидайте"}
                                             </Alert>
                                         </Box>
                                     </Fade>
-                                )}
-
-                                {/* Новый статус (появляется) */}
-                                <Fade in={commissarReady !== null && prevStatus === null} timeout={300}>
-                                    <Box sx={{ position: 'absolute', width: '100%' }}>
-                                        <Alert
-                                            severity={commissarReady ? "success" : "warning"}
-                                            sx={{
-                                                transition: 'opacity 0.3s ease',
-                                                opacity: prevStatus === null ? 1 : 0
-                                            }}
-                                        >
-                                            {commissarReady
-                                                ? "Комиссар готов вас принять"
-                                                : "Комиссар занят, ожидайте"}
-                                        </Alert>
-                                    </Box>
-                                </Fade>
+                                ) : <Skeleton height={65} />}
                             </Box>
                         )}
                     </CardContent>
