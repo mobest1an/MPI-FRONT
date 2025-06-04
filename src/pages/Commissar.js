@@ -11,99 +11,183 @@ import {
     Container,
     Typography,
     CircularProgress,
-    Alert
+    Alert,
+    Box
 } from '@mui/material';
-import { getQueue, removeFromQueue } from '../utils/api';
+import {
+    getQueue,
+    removeFromQueue,
+    getSummonedUsers,
+    addToEscortRoom
+} from '../utils/api';
+import { useAuth } from '../context/AuthContext';
 
 const Commissar = () => {
     const [queue, setQueue] = useState([]);
-    const [loading, setLoading] = useState(true);
+    const [summoned, setSummoned] = useState([]);
+    const [loading, setLoading] = useState({
+        queue: true,
+        summoned: true,
+        action: false
+    });
     const [error, setError] = useState(null);
 
-    const fetchQueue = async () => {
+    const fetchAllData = async () => {
         try {
-            setLoading(true);
-            const data = await getQueue();
-            setQueue(data);
+            setLoading({ queue: true, summoned: true, action: false });
+            const [queueData, summonedData] = await Promise.all([
+                getQueue(),
+                getSummonedUsers()
+            ]);
+            setQueue(queueData);
+            setSummoned(summonedData);
             setError(null);
         } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка загрузки очереди');
+            setError(err.response?.data?.message || 'Ошибка загрузки данных');
         } finally {
-            setLoading(false);
+            setLoading({ queue: false, summoned: false, action: false });
         }
     };
 
     const handleRemove = async (username) => {
         try {
+            setLoading(prev => ({...prev, action: true}));
             await removeFromQueue(username);
-            await fetchQueue(); // Обновляем список после удаления
+            await fetchAllData();
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при вызове');
         }
     };
 
+    const handleAddToEscort = async (username) => {
+        try {
+            setLoading(prev => ({...prev, action: true}));
+            await addToEscortRoom(username);
+            await fetchAllData();
+        } catch (err) {
+            setError(err.response?.data?.message || 'Ошибка при отправке');
+        }
+    };
+
     useEffect(() => {
-        fetchQueue();
+        fetchAllData();
     }, []);
 
     return (
         <Container maxWidth="lg">
-            <Typography variant="h4" gutterBottom sx={{ mt: 3 }}>
-                Очередь призыва
-            </Typography>
+            <Box sx={{ mt: 4, mb: 4 }}>
+                <Typography variant="h4" gutterBottom>
+                    Панель комиссара
+                </Typography>
 
-            {error && (
-                <Alert severity="error" sx={{ mb: 2 }}>
-                    {error}
-                </Alert>
-            )}
+                <Button
+                    variant="contained"
+                    color="primary"
+                    onClick={fetchAllData}
+                    disabled={loading.action}
+                    sx={{ mb: 2 }}
+                >
+                    Обновить данные
+                </Button>
 
-            {loading ? (
-                <CircularProgress />
-            ) : (
-                <TableContainer component={Paper}>
-                    <Table>
-                        <TableHead>
-                            <TableRow>
-                                <TableCell>Username</TableCell>
-                                <TableCell align="right">Действие</TableCell>
-                            </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            {queue.length > 0 ? (
-                                queue.map((item) => (
-                                    <TableRow key={item.username}>
-                                        <TableCell>{item.username}</TableCell>
-                                        <TableCell align="right">
-                                            <Button
-                                                variant="contained"
-                                                color="error"
-                                                onClick={() => handleRemove(item.username)}
-                                            >
-                                                Призвать
-                                            </Button>
+                {error && (
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                        {error}
+                    </Alert>
+                )}
+
+                {/* Таблица очереди */}
+                <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
+                    Очередь призыва
+                </Typography>
+                {loading.queue ? (
+                    <CircularProgress />
+                ) : (
+                    <TableContainer component={Paper} sx={{ mb: 4 }}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Username</TableCell>
+                                    <TableCell align="right">Действия</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {queue.length > 0 ? (
+                                    queue.map((item) => (
+                                        <TableRow key={item.username}>
+                                            <TableCell component="th" scope="row">
+                                                {item.username}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Button
+                                                    variant="contained"
+                                                    color="secondary"
+                                                    onClick={() => handleRemove(item.username)}
+                                                    disabled={loading.action}
+                                                >
+                                                    Призвать
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={2} align="center">
+                                            Очередь пуста
                                         </TableCell>
                                     </TableRow>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell colSpan={2} align="center">
-                                        Очередь пуста
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            )}
+                                )}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                )}
 
-            <Button
-                variant="contained"
-                onClick={fetchQueue}
-                sx={{ mt: 2 }}
-            >
-                Обновить очередь
-            </Button>
+                {/* Таблица призывников */}
+                <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
+                    Призывники
+                </Typography>
+                {loading.summoned ? (
+                    <CircularProgress />
+                ) : (
+                    <TableContainer component={Paper}>
+                        <Table>
+                            <TableHead>
+                                <TableRow>
+                                    <TableCell>Username</TableCell>
+                                    <TableCell align="right">Действия</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {summoned.length > 0 ? (
+                                    summoned.map((item) => (
+                                        <TableRow key={item.username}>
+                                            <TableCell component="th" scope="row">
+                                                {item.username}
+                                            </TableCell>
+                                            <TableCell align="right">
+                                                <Button
+                                                    variant="contained"
+                                                    color="primary"
+                                                    onClick={() => handleAddToEscort(item.username)}
+                                                    disabled={loading.action}
+                                                >
+                                                    Отправить в комнату
+                                                </Button>
+                                            </TableCell>
+                                        </TableRow>
+                                    ))
+                                ) : (
+                                    <TableRow>
+                                        <TableCell colSpan={2} align="center">
+                                            Нет призывников
+                                        </TableCell>
+                                    </TableRow>
+                                )}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                )}
+            </Box>
         </Container>
     );
 };

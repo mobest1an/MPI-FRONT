@@ -54,4 +54,23 @@ export const checkCommissarReady = async (username) => {
     return response.data; // Ожидается boolean
 };
 
+export const getEscortRoomUsers = async () => {
+    const response = await api.get('/api/v1/escort/room');
+    return response.data; // Ожидается массив объектов { username: string }
+};
+
+export const createConvoy = async () => {
+    const response = await api.post('/api/v1/escort/room/delete');
+    return response.data;
+};
+
+export const getSummonedUsers = async () => {
+    const response = await api.get('/api/v1/commissar/room/summoned');
+    return response.data;
+};
+
+export const addToEscortRoom = async (username) => {
+    await api.post('/api/v1/commissar/room/add', { username });
+};
+
 export default api;
