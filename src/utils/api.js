@@ -73,4 +73,9 @@ export const addToEscortRoom = async (username) => {
     await api.post('/api/v1/commissar/room/add', { username });
 };
 
+export const checkUserInEscortRoom = async (username) => {
+    const response = await api.get(`/api/v1/commissar/room/exists/${username}`);
+    return response.data; // Ожидается boolean
+};
+
 export default api;

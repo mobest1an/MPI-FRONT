@@ -5,29 +5,26 @@ import { loginUser, registerUser } from '../utils/api';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(() => {
+        // Пытаемся прочитать данные из localStorage при инициализации
+        const storedUser = localStorage.getItem('user');
+        return storedUser ? JSON.parse(storedUser) : null;
+    });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-    const [initialLoading, setInitialLoading] = useState(true);
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            // Здесь можно добавить запрос для проверки токена
-            // Пока просто устанавливаем флаг аутентификации
-            setUser({ token });
-        }
-        setInitialLoading(false);
-    }, []);
-
-    // Обновляем начальное состояние, чтобы сохранять username
     const login = async (credentials) => {
         setLoading(true);
         try {
-            const { token } = await loginUser(credentials);
+            const { token, user: userData } = await loginUser(credentials);
+            const user = { token, username: credentials.username };
+
+            // Сохраняем данные в localStorage
+            localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('token', token);
-            setUser({ token, username: credentials.username }); // Сохраняем username
+
+            setUser(user);
             navigate('/');
             setError(null);
         } catch (err) {
@@ -53,17 +50,30 @@ export const AuthProvider = ({ children }) => {
     };
 
     const logout = () => {
+        // Очищаем localStorage при выходе
+        localStorage.removeItem('user');
         localStorage.removeItem('token');
         setUser(null);
         navigate('/login');
     };
+
+    // Проверяем токен при загрузке приложения
+    useEffect(() => {
+        const token = localStorage.getItem('token');
+        if (token && !user) {
+            // Здесь можно добавить проверку токена на бэкенде
+            const storedUser = localStorage.getItem('user');
+            if (storedUser) {
+                setUser(JSON.parse(storedUser));
+            }
+        }
+    }, []);
 
     return (
         <AuthContext.Provider value={{
             user,
             error,
             loading,
-            initialLoading,
             login,
             register,
             logout,

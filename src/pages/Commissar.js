@@ -18,23 +18,25 @@ import {
     getQueue,
     removeFromQueue,
     getSummonedUsers,
-    addToEscortRoom
+    addToEscortRoom,
+    checkUserInEscortRoom
 } from '../utils/api';
-import { useAuth } from '../context/AuthContext';
 
 const Commissar = () => {
     const [queue, setQueue] = useState([]);
     const [summoned, setSummoned] = useState([]);
+    const [userStatuses, setUserStatuses] = useState({}); // {username: boolean}
     const [loading, setLoading] = useState({
         queue: true,
         summoned: true,
-        action: false
+        action: false,
+        checks: false
     });
     const [error, setError] = useState(null);
 
     const fetchAllData = async () => {
         try {
-            setLoading({ queue: true, summoned: true, action: false });
+            setLoading(prev => ({...prev, queue: true, summoned: true}));
             const [queueData, summonedData] = await Promise.all([
                 getQueue(),
                 getSummonedUsers()
@@ -42,10 +44,44 @@ const Commissar = () => {
             setQueue(queueData);
             setSummoned(summonedData);
             setError(null);
+
+            // Проверяем статус каждого пользователя
+            checkUsersStatus(summonedData);
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка загрузки данных');
         } finally {
-            setLoading({ queue: false, summoned: false, action: false });
+            setLoading(prev => ({...prev, queue: false, summoned: false}));
+        }
+    };
+
+    const checkUsersStatus = async (users) => {
+        try {
+            setLoading(prev => ({...prev, checks: true}));
+            const statuses = {};
+
+            // Параллельно проверяем статус всех пользователей
+            await Promise.all(users.map(async (user) => {
+                const isInRoom = await checkUserInEscortRoom(user.username);
+                statuses[user.username] = isInRoom;
+            }));
+
+            setUserStatuses(statuses);
+        } catch (err) {
+            console.error('Ошибка проверки статуса:', err);
+        } finally {
+            setLoading(prev => ({...prev, checks: false}));
+        }
+    };
+
+    const handleAddToEscort = async (username) => {
+        try {
+            setLoading(prev => ({...prev, action: true}));
+            await addToEscortRoom(username);
+            await fetchAllData(); // Обновляем данные после изменения
+        } catch (err) {
+            setError(err.response?.data?.message || 'Ошибка при отправке');
+        } finally {
+            setLoading(prev => ({...prev, action: false}));
         }
     };
 
@@ -56,16 +92,6 @@ const Commissar = () => {
             await fetchAllData();
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при вызове');
-        }
-    };
-
-    const handleAddToEscort = async (username) => {
-        try {
-            setLoading(prev => ({...prev, action: true}));
-            await addToEscortRoom(username);
-            await fetchAllData();
-        } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка при отправке');
         }
     };
 
@@ -142,7 +168,7 @@ const Commissar = () => {
                     </TableContainer>
                 )}
 
-                {/* Таблица призывников */}
+                {/* Таблица призывников с проверкой статуса */}
                 <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
                     Призывники
                 </Typography>
@@ -159,19 +185,30 @@ const Commissar = () => {
                             </TableHead>
                             <TableBody>
                                 {summoned.length > 0 ? (
-                                    summoned.map((item) => (
-                                        <TableRow key={item.username}>
-                                            <TableCell component="th" scope="row">
-                                                {item.username}
-                                            </TableCell>
+                                    summoned.map((user) => (
+                                        <TableRow key={user.username}>
+                                            <TableCell>{user.username}</TableCell>
                                             <TableCell align="right">
                                                 <Button
                                                     variant="contained"
-                                                    color="primary"
-                                                    onClick={() => handleAddToEscort(item.username)}
-                                                    disabled={loading.action}
+                                                    color={userStatuses[user.username] ? "default" : "primary"}
+                                                    onClick={() => handleAddToEscort(user.username)}
+                                                    disabled={
+                                                        loading.action ||
+                                                        loading.checks ||
+                                                        userStatuses[user.username] === true
+                                                    }
+                                                    sx={{
+                                                        bgcolor: userStatuses[user.username] ? '#e0e0e0' : '',
+                                                        '&:disabled': {
+                                                            bgcolor: '#f5f5f5',
+                                                            color: '#9e9e9e'
+                                                        }
+                                                    }}
                                                 >
-                                                    Отправить в комнату
+                                                    {userStatuses[user.username]
+                                                        ? "Уже в комнате"
+                                                        : "Отправить в комнату"}
                                                 </Button>
                                             </TableCell>
                                         </TableRow>
