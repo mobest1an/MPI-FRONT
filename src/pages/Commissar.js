@@ -12,7 +12,15 @@ import {
     Typography,
     CircularProgress,
     Alert,
-    Box
+    Box,
+    Dialog,
+    DialogTitle,
+    DialogContent,
+    DialogActions,
+    FormControl,
+    InputLabel,
+    Select,
+    MenuItem
 } from '@mui/material';
 import {
     getQueue,
@@ -34,9 +42,15 @@ const Commissar = () => {
     });
     const [error, setError] = useState(null);
 
+    // ----- Состояния для диалога -----
+    const [branchDialogOpen, setBranchDialogOpen] = useState(false);
+    const [selectedUser, setSelectedUser] = useState('');   // пользователь, для которого открыли диалог
+    const [selectedBranch, setSelectedBranch] = useState(''); // выбранный «род войск»
+
+    // ---------- Получение данных ----------
     const fetchAllData = async () => {
         try {
-            setLoading(prev => ({...prev, queue: true, summoned: true}));
+            setLoading(prev => ({ ...prev, queue: true, summoned: true }));
             const [queueData, summonedData] = await Promise.all([
                 getQueue(),
                 getSummonedUsers()
@@ -45,21 +59,20 @@ const Commissar = () => {
             setSummoned(summonedData);
             setError(null);
 
-            // Проверяем статус каждого пользователя
+            // проверяем статус уже находящихся в комнате
             checkUsersStatus(summonedData);
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка загрузки данных');
         } finally {
-            setLoading(prev => ({...prev, queue: false, summoned: false}));
+            setLoading(prev => ({ ...prev, queue: false, summoned: false }));
         }
     };
 
     const checkUsersStatus = async (users) => {
         try {
-            setLoading(prev => ({...prev, checks: true}));
+            setLoading(prev => ({ ...prev, checks: true }));
             const statuses = {};
 
-            // Параллельно проверяем статус всех пользователей
             await Promise.all(users.map(async (user) => {
                 const isInRoom = await checkUserInEscortRoom(user.username);
                 statuses[user.username] = isInRoom;
@@ -69,36 +82,62 @@ const Commissar = () => {
         } catch (err) {
             console.error('Ошибка проверки статуса:', err);
         } finally {
-            setLoading(prev => ({...prev, checks: false}));
+            setLoading(prev => ({ ...prev, checks: false }));
         }
     };
 
-    const handleAddToEscort = async (username) => {
+    // ---------- ОТКРЫТЬ ДИАЛОГ ----------
+    const handleAddToEscort = (username) => {
+        // просто запоминаем, для кого открываем окно
+        setSelectedUser(username);
+        setSelectedBranch('');                 // сбрасываем прежний выбор
+        setBranchDialogOpen(true);
+    };
+
+    const handleBranchChange = (e) => {
+        setSelectedBranch(e.target.value);
+    };
+
+    const handleCloseDialog = () => {
+        setBranchDialogOpen(false);
+        setSelectedUser('');
+        setSelectedBranch('');
+    };
+
+    // ---------- ПОДТВЕРДИТЬ И ОТПРАВИТЬ ----------
+    const handleConfirmAddToEscort = async () => {
         try {
-            setLoading(prev => ({...prev, action: true}));
-            await addToEscortRoom(username);
-            await fetchAllData(); // Обновляем данные после изменения
+            setLoading(prev => ({ ...prev, action: true }));
+            // **ВАЖНО:** в `addToEscortRoom` передаём и ветвь, и имя пользователя
+            await addToEscortRoom(selectedUser, selectedBranch);
+            await fetchAllData();
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при отправке');
         } finally {
-            setLoading(prev => ({...prev, action: false}));
+            setLoading(prev => ({ ...prev, action: false }));
+            handleCloseDialog();
         }
     };
 
+    // ---------- УДАЛИТЬ ИЗ ОЧЕРЕДИ ----------
     const handleRemove = async (username) => {
         try {
-            setLoading(prev => ({...prev, action: true}));
+            setLoading(prev => ({ ...prev, action: true }));
             await removeFromQueue(username);
             await fetchAllData();
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка при вызове');
+        } finally {
+            setLoading(prev => ({ ...prev, action: false }));
         }
     };
 
+    // ---------- HOOK ----------
     useEffect(() => {
         fetchAllData();
     }, []);
 
+    // ---------- RENDER ----------
     return (
         <Container maxWidth="lg">
             <Box sx={{ mt: 4, mb: 4 }}>
@@ -122,7 +161,7 @@ const Commissar = () => {
                     </Alert>
                 )}
 
-                {/* Таблица очереди */}
+                {/* ==================== ОЧЕРЕДЬ ==================== */}
                 <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
                     Очередь призыва
                 </Typography>
@@ -168,7 +207,7 @@ const Commissar = () => {
                     </TableContainer>
                 )}
 
-                {/* Таблица призывников с проверкой статуса */}
+                {/* ==================== ПРИНЯТЫЕ ==================== */}
                 <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
                     Призывники
                 </Typography>
@@ -225,6 +264,41 @@ const Commissar = () => {
                     </TableContainer>
                 )}
             </Box>
+
+            {/* ==================== ДИАЛОГ ==================== */}
+            <Dialog open={branchDialogOpen} onClose={handleCloseDialog}>
+                <DialogTitle>Укажите род войск</DialogTitle>
+                <DialogContent>
+                    <FormControl fullWidth sx={{ mt: 2 }}>
+                        <InputLabel id="branch-select-label">Род войск</InputLabel>
+                        <Select
+                            labelId="branch-select-label"
+                            value={selectedBranch}
+                            label="Род войск"
+                            onChange={handleBranchChange}
+                        >
+                            {/* Пример вариантов – замените/добавьте свои */}
+                            <MenuItem value="Пехота">Пехота</MenuItem>
+                            <MenuItem value="Танковые">Танковые</MenuItem>
+                            <MenuItem value="Артиллерия">Артиллерия</MenuItem>
+                            <MenuItem value="Военно‑воздушные силы">Военно‑воздушные силы</MenuItem>
+                            <MenuItem value="Военно‑морские силы">Военно‑морские силы</MenuItem>
+                        </Select>
+                    </FormControl>
+                </DialogContent>
+                <DialogActions>
+                    <Button onClick={handleCloseDialog} color="inherit">
+                        Отмена
+                    </Button>
+                    <Button
+                        onClick={handleConfirmAddToEscort}
+                        color="primary"
+                        disabled={!selectedBranch || loading.action}
+                    >
+                        Отправить
+                    </Button>
+                </DialogActions>
+            </Dialog>
         </Container>
     );
 };

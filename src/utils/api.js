@@ -69,8 +69,8 @@ export const getSummonedUsers = async () => {
     return response.data;
 };
 
-export const addToEscortRoom = async (username) => {
-    await api.post('/api/v1/commissar/room/add', { username });
+export const addToEscortRoom = async (username, army) => {
+    await api.post('/api/v1/commissar/room/add', { username, army });
 };
 
 export const checkUserInEscortRoom = async (username) => {
