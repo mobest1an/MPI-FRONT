@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import {
     Table,
     TableBody,
@@ -13,10 +13,8 @@ import {
     CircularProgress,
     Alert,
     Box,
-    Dialog,
-    DialogTitle,
-    DialogContent,
-    DialogActions,
+    Card,
+    CardContent,
     FormControl,
     InputLabel,
     Select,
@@ -24,280 +22,221 @@ import {
 } from '@mui/material';
 import {
     getQueue,
-    removeFromQueue,
-    getSummonedUsers,
-    addToEscortRoom,
-    checkUserInEscortRoom
+    summonRecruit,
+    getCurrentSummoned,
+    sendToWaitingRoom
 } from '../utils/api';
 import Header from '../components/Header';
 
+const MILITARY_BRANCHES = [
+    'Пехота',
+    'Танковые войска',
+    'Артиллерия',
+    'Военно-воздушные силы',
+    'Военно-морские силы'
+];
+
 const Commissar = () => {
     const [queue, setQueue] = useState([]);
-    const [summoned, setSummoned] = useState([]);
-    const [userStatuses, setUserStatuses] = useState({}); // {username: boolean}
+    const [currentRecruit, setCurrentRecruit] = useState(null);
+    const [selectedBranch, setSelectedBranch] = useState('');
     const [loading, setLoading] = useState({
-        queue: true,
-        summoned: true,
-        action: false,
-        checks: false
+        initial: true,
+        action: false
     });
     const [error, setError] = useState(null);
+    const [success, setSuccess] = useState(null);
 
-    // ----- Состояния для диалога -----
-    const [branchDialogOpen, setBranchDialogOpen] = useState(false);
-    const [selectedUser, setSelectedUser] = useState('');   // пользователь, для которого открыли диалог
-    const [selectedBranch, setSelectedBranch] = useState(''); // выбранный «род войск»
-
-    // ---------- Получение данных ----------
-    const fetchAllData = async () => {
+    const fetchData = useCallback(async () => {
         try {
-            setLoading(prev => ({ ...prev, queue: true, summoned: true }));
-            const [queueData, summonedData] = await Promise.all([
-                getQueue(),
-                getSummonedUsers()
-            ]);
-            setQueue(queueData);
-            setSummoned(summonedData);
+            setLoading(prev => ({ ...prev, initial: true }));
             setError(null);
 
-            // проверяем статус уже находящихся в комнате
-            checkUsersStatus(summonedData);
+            const [queueData, summonedData] = await Promise.all([
+                getQueue(),
+                getCurrentSummoned()
+            ]);
+
+            setQueue(queueData || []);
+            // Проверяем что summonedData это объект с данными, а не null/undefined/пустая строка
+            setCurrentRecruit(summonedData && summonedData.username ? summonedData : null);
+            
+            if (!summonedData || !summonedData.username) {
+                setSelectedBranch('');
+            }
         } catch (err) {
             setError(err.response?.data?.message || 'Ошибка загрузки данных');
         } finally {
-            setLoading(prev => ({ ...prev, queue: false, summoned: false }));
+            setLoading(prev => ({ ...prev, initial: false }));
         }
-    };
-
-    const checkUsersStatus = async (users) => {
-        try {
-            setLoading(prev => ({ ...prev, checks: true }));
-            const statuses = {};
-
-            await Promise.all(users.map(async (user) => {
-                const isInRoom = await checkUserInEscortRoom(user.username);
-                statuses[user.username] = isInRoom;
-            }));
-
-            setUserStatuses(statuses);
-        } catch (err) {
-            console.error('Ошибка проверки статуса:', err);
-        } finally {
-            setLoading(prev => ({ ...prev, checks: false }));
-        }
-    };
-
-    // ---------- ОТКРЫТЬ ДИАЛОГ ----------
-    const handleAddToEscort = (username) => {
-        // просто запоминаем, для кого открываем окно
-        setSelectedUser(username);
-        setSelectedBranch('');                 // сбрасываем прежний выбор
-        setBranchDialogOpen(true);
-    };
-
-    const handleBranchChange = (e) => {
-        setSelectedBranch(e.target.value);
-    };
-
-    const handleCloseDialog = () => {
-        setBranchDialogOpen(false);
-        setSelectedUser('');
-        setSelectedBranch('');
-    };
-
-    // ---------- ПОДТВЕРДИТЬ И ОТПРАВИТЬ ----------
-    const handleConfirmAddToEscort = async () => {
-        try {
-            setLoading(prev => ({ ...prev, action: true }));
-            // **ВАЖНО:** в `addToEscortRoom` передаём и ветвь, и имя пользователя
-            await addToEscortRoom(selectedUser, selectedBranch);
-            await fetchAllData();
-        } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка при отправке');
-        } finally {
-            setLoading(prev => ({ ...prev, action: false }));
-            handleCloseDialog();
-        }
-    };
-
-    // ---------- УДАЛИТЬ ИЗ ОЧЕРЕДИ ----------
-    const handleRemove = async (username) => {
-        try {
-            setLoading(prev => ({ ...prev, action: true }));
-            await removeFromQueue(username);
-            await fetchAllData();
-        } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка при вызове');
-        } finally {
-            setLoading(prev => ({ ...prev, action: false }));
-        }
-    };
-
-    // ---------- HOOK ----------
-    useEffect(() => {
-        fetchAllData();
     }, []);
 
-    // ---------- RENDER ----------
+    useEffect(() => {
+        fetchData();
+    }, [fetchData]);
+
+    const handleSummon = async (username) => {
+        try {
+            setLoading(prev => ({ ...prev, action: true }));
+            setError(null);
+
+            await summonRecruit(username);
+            await fetchData();
+        } catch (err) {
+            setError(err.response?.data?.message || 'Ошибка при вызове призывника');
+        } finally {
+            setLoading(prev => ({ ...prev, action: false }));
+        }
+    };
+
+    const handleSendToWaitingRoom = async () => {
+        if (!currentRecruit || !selectedBranch) return;
+
+        try {
+            setLoading(prev => ({ ...prev, action: true }));
+            setError(null);
+
+            await sendToWaitingRoom(currentRecruit.username, selectedBranch);
+            setSuccess(`${currentRecruit.username} отправлен в зал ожидания`);
+            setTimeout(() => setSuccess(null), 3000);
+            setSelectedBranch('');
+            
+            await fetchData();
+        } catch (err) {
+            setError(err.response?.data?.message || 'Ошибка при отправке в зал ожидания');
+        } finally {
+            setLoading(prev => ({ ...prev, action: false }));
+        }
+    };
+
+    // Проверка есть ли вызванный призывник
+    const hasSummoned = currentRecruit !== null;
+
+    const renderCurrentRecruit = () => {
+        if (!hasSummoned) return null;
+
+        return (
+            <Card variant="outlined" sx={{ mb: 4, bgcolor: 'primary.light' }}>
+                <CardContent>
+                    <Typography variant="h6" gutterBottom color="primary.contrastText">
+                        Текущий призывник
+                    </Typography>
+                    <Typography variant="h5" sx={{ mb: 2 }} color="primary.contrastText">
+                        {currentRecruit.username}
+                    </Typography>
+
+                    <FormControl fullWidth sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }}>
+                        <InputLabel id="branch-select-label">Род войск</InputLabel>
+                        <Select
+                            labelId="branch-select-label"
+                            value={selectedBranch}
+                            label="Род войск"
+                            onChange={(e) => setSelectedBranch(e.target.value)}
+                        >
+                            {MILITARY_BRANCHES.map((branch) => (
+                                <MenuItem key={branch} value={branch}>
+                                    {branch}
+                                </MenuItem>
+                            ))}
+                        </Select>
+                    </FormControl>
+
+                    <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={handleSendToWaitingRoom}
+                        disabled={loading.action || !selectedBranch}
+                        fullWidth
+                    >
+                        {loading.action ? (
+                            <CircularProgress size={24} color="inherit" />
+                        ) : (
+                            'Отправить в зал ожидания'
+                        )}
+                    </Button>
+                </CardContent>
+            </Card>
+        );
+    };
+
     return (
         <>
             <Header title="Панель комиссара" />
             <Container maxWidth="lg">
                 <Box sx={{ mb: 4 }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={fetchAllData}
-                        disabled={loading.action}
-                        sx={{ mb: 2 }}
-                    >
-                        Обновить данные
-                    </Button>
-
                     {error && (
-                        <Alert severity="error" sx={{ mb: 2 }}>
+                        <Alert severity="error" sx={{ mb: 2 }} onClose={() => setError(null)}>
                             {error}
                         </Alert>
                     )}
 
-                    {/* ==================== ОЧЕРЕДЬ ==================== */}
-                    <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
-                        Очередь призыва
-                    </Typography>
-                    {loading.queue ? (
-                        <CircularProgress />
-                    ) : (
-                        <TableContainer component={Paper} sx={{ mb: 4 }}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Username</TableCell>
-                                        <TableCell align="right">Действия</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {queue.length > 0 ? (
-                                        queue.map((item) => (
-                                            <TableRow key={item.username}>
-                                                <TableCell component="th" scope="row">
-                                                    {item.username}
-                                                </TableCell>
-                                                <TableCell align="right">
-                                                    <Button
-                                                        variant="contained"
-                                                        color="secondary"
-                                                        onClick={() => handleRemove(item.username)}
-                                                        disabled={loading.action}
-                                                    >
-                                                        Призвать
-                                                    </Button>
-                                                </TableCell>
-                                            </TableRow>
-                                        ))
-                                    ) : (
-                                        <TableRow>
-                                            <TableCell colSpan={2} align="center">
-                                                Очередь пуста
-                                            </TableCell>
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                    {success && (
+                        <Alert severity="success" sx={{ mb: 2 }} onClose={() => setSuccess(null)}>
+                            {success}
+                        </Alert>
                     )}
 
-                    {/* ==================== ПРИНЯТЫЕ ==================== */}
-                    <Typography variant="h5" gutterBottom sx={{ mt: 3 }}>
-                        Призывники
-                    </Typography>
-                    {loading.summoned ? (
-                        <CircularProgress />
+                    <Button
+                        variant="outlined"
+                        onClick={fetchData}
+                        disabled={loading.initial || loading.action}
+                        sx={{ mb: 3 }}
+                    >
+                        Обновить данные
+                    </Button>
+
+                    {loading.initial ? (
+                        <Box sx={{ display: 'flex', justifyContent: 'center', mt: 4 }}>
+                            <CircularProgress />
+                        </Box>
                     ) : (
-                        <TableContainer component={Paper}>
-                            <Table>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Username</TableCell>
-                                        <TableCell align="right">Действия</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {summoned.length > 0 ? (
-                                        summoned.map((user) => (
-                                            <TableRow key={user.username}>
-                                                <TableCell>{user.username}</TableCell>
-                                                <TableCell align="right">
-                                                    <Button
-                                                        variant="contained"
-                                                        color={userStatuses[user.username] ? "default" : "primary"}
-                                                        onClick={() => handleAddToEscort(user.username)}
-                                                        disabled={
-                                                            loading.action ||
-                                                            loading.checks ||
-                                                            userStatuses[user.username] === true
-                                                        }
-                                                        sx={{
-                                                            bgcolor: userStatuses[user.username] ? '#e0e0e0' : '',
-                                                            '&:disabled': {
-                                                                bgcolor: '#f5f5f5',
-                                                                color: '#9e9e9e'
-                                                            }
-                                                        }}
-                                                    >
-                                                        {userStatuses[user.username]
-                                                            ? "Уже в комнате"
-                                                            : "Отправить в комнату"}
-                                                    </Button>
+                        <>
+                            {renderCurrentRecruit()}
+
+                            <Typography variant="h5" gutterBottom>
+                                Очередь призыва
+                            </Typography>
+
+                            <TableContainer component={Paper}>
+                                <Table>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Имя пользователя</TableCell>
+                                            <TableCell align="right">Действия</TableCell>
+                                        </TableRow>
+                                    </TableHead>
+                                    <TableBody>
+                                        {queue.length > 0 ? (
+                                            queue.map((item) => (
+                                                <TableRow key={item.username}>
+                                                    <TableCell component="th" scope="row">
+                                                        {item.username}
+                                                    </TableCell>
+                                                    <TableCell align="right">
+                                                        <Button
+                                                            variant="contained"
+                                                            color="primary"
+                                                            onClick={() => handleSummon(item.username)}
+                                                            disabled={loading.action || hasSummoned}
+                                                        >
+                                                            Вызвать
+                                                        </Button>
+                                                    </TableCell>
+                                                </TableRow>
+                                            ))
+                                        ) : (
+                                            <TableRow>
+                                                <TableCell colSpan={2} align="center">
+                                                    Очередь пуста
                                                 </TableCell>
                                             </TableRow>
-                                        ))
-                                    ) : (
-                                        <TableRow>
-                                            <TableCell colSpan={2} align="center">
-                                                Нет призывников
-                                            </TableCell>
-                                        </TableRow>
-                                    )}
-                                </TableBody>
-                            </Table>
-                        </TableContainer>
+                                        )}
+                                    </TableBody>
+                                </Table>
+                            </TableContainer>
+                        </>
                     )}
                 </Box>
-
-                {/* ==================== ДИАЛОГ ==================== */}
-                <Dialog open={branchDialogOpen} onClose={handleCloseDialog}>
-                    <DialogTitle>Укажите род войск</DialogTitle>
-                    <DialogContent>
-                        <FormControl fullWidth sx={{ mt: 2 }}>
-                            <InputLabel id="branch-select-label">Род войск</InputLabel>
-                            <Select
-                                labelId="branch-select-label"
-                                value={selectedBranch}
-                                label="Род войск"
-                                onChange={handleBranchChange}
-                            >
-                                {/* Пример вариантов – замените/добавьте свои */}
-                                <MenuItem value="Пехота">Пехота</MenuItem>
-                                <MenuItem value="Танковые">Танковые</MenuItem>
-                                <MenuItem value="Артиллерия">Артиллерия</MenuItem>
-                                <MenuItem value="Военно‑воздушные силы">Военно‑воздушные силы</MenuItem>
-                                <MenuItem value="Военно‑морские силы">Военно‑морские силы</MenuItem>
-                            </Select>
-                        </FormControl>
-                    </DialogContent>
-                    <DialogActions>
-                        <Button onClick={handleCloseDialog} color="inherit">
-                            Отмена
-                        </Button>
-                        <Button
-                            onClick={handleConfirmAddToEscort}
-                            color="primary"
-                            disabled={!selectedBranch || loading.action}
-                        >
-                            Отправить
-                        </Button>
-                    </DialogActions>
-                </Dialog>
             </Container>
         </>
     );
