@@ -11,8 +11,8 @@ import {
     Alert,
     Paper
 } from '@mui/material';
-import { useAuth } from '../context/AuthContext';
 import { getEscortRoomUsers, createConvoy } from '../utils/api';
+import Header from '../components/Header';
 
 const Escort = () => {
     const [users, setUsers] = useState([]);
@@ -22,7 +22,6 @@ const Escort = () => {
     });
     const [error, setError] = useState(null);
     const [convoyCreated, setConvoyCreated] = useState(false);
-    const { user, logout } = useAuth();
 
     useEffect(() => {
         const fetchUsers = async () => {
@@ -56,74 +55,65 @@ const Escort = () => {
     };
 
     return (
-        <Container maxWidth="sm">
-            <Box sx={{ mt: 4, display: 'flex', flexDirection: 'column', gap: 2 }}>
-                <Typography variant="h4" component="h1" gutterBottom>
-                    Управление конвоем
-                </Typography>
+        <>
+            <Header title="Управление конвоем" />
+            <Container maxWidth="sm">
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    {error && (
+                        <Alert severity="error" sx={{ mb: 2 }}>
+                            {error}
+                        </Alert>
+                    )}
 
-                {error && (
-                    <Alert severity="error" sx={{ mb: 2 }}>
-                        {error}
-                    </Alert>
-                )}
+                    <Typography variant="h6" component="h2">
+                        Список доступных пользователей:
+                    </Typography>
 
-                <Typography variant="h6" component="h2">
-                    Список доступных пользователей:
-                </Typography>
-
-                {loading.users ? (
-                    <CircularProgress />
-                ) : (
-                    <Paper elevation={3} sx={{ maxHeight: 300, overflow: 'auto' }}>
-                        <List>
-                            {users.length > 0 ? (
-                                users.map((user) => (
-                                    <ListItem key={user.username}>
-                                        <ListItemText primary={user.username} />
+                    {loading.users ? (
+                        <CircularProgress />
+                    ) : (
+                        <Paper elevation={3} sx={{ maxHeight: 300, overflow: 'auto' }}>
+                            <List>
+                                {users.length > 0 ? (
+                                    users.map((user) => (
+                                        <ListItem key={user.username}>
+                                            <ListItemText primary={user.username} />
+                                        </ListItem>
+                                    ))
+                                ) : (
+                                    <ListItem>
+                                        <ListItemText primary="Нет доступных пользователей" />
                                     </ListItem>
-                                ))
+                                )}
+                            </List>
+                        </Paper>
+                    )}
+
+                    <Box sx={{ mt: 4 }}>
+                        <Button
+                            variant="contained"
+                            color="primary"
+                            onClick={handleCreateConvoy}
+                            disabled={loading.users || loading.convoy}
+                            fullWidth
+                            size="large"
+                        >
+                            {loading.convoy ? (
+                                <CircularProgress size={24} color="inherit" />
                             ) : (
-                                <ListItem>
-                                    <ListItemText primary="Нет доступных пользователей" />
-                                </ListItem>
+                                'Создать конвой'
                             )}
-                        </List>
-                    </Paper>
-                )}
+                        </Button>
+                    </Box>
 
-                <Box sx={{ mt: 4 }}>
-                    <Button
-                        variant="contained"
-                        color="primary"
-                        onClick={handleCreateConvoy}
-                        disabled={loading.users || loading.convoy}
-                        fullWidth
-                        size="large"
-                    >
-                        {loading.convoy ? (
-                            <CircularProgress size={24} color="inherit" />
-                        ) : (
-                            'Создать конвой'
-                        )}
-                    </Button>
+                    {convoyCreated && (
+                        <Alert severity="success" sx={{ mt: 2 }}>
+                            Конвой успешно создан!
+                        </Alert>
+                    )}
                 </Box>
-
-                {convoyCreated && (
-                    <Alert severity="success" sx={{ mt: 2 }}>
-                        Конвой успешно создан!
-                    </Alert>
-                )}
-
-                <Button
-                    variant="outlined"
-                    onClick={logout}
-                    sx={{ mt: 4, alignSelf: 'flex-start' }}
-                >
-                    Выйти
-                </Button>
-            </Box>
-        </Container>
+            </Container>
+        </>
     );
 };
 

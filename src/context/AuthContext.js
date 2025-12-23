@@ -1,6 +1,7 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { loginUser, registerUser } from '../utils/api';
+import { getRedirectPath } from '../constants/roles';
 
 const AuthContext = createContext();
 
@@ -12,20 +13,25 @@ export const AuthProvider = ({ children }) => {
     });
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
+    const [initialLoading, setInitialLoading] = useState(true);
     const navigate = useNavigate();
 
     const login = async (credentials) => {
         setLoading(true);
         try {
-            const { token, user: userData } = await loginUser(credentials);
-            const user = { token, username: credentials.username };
+            const { token, roles } = await loginUser(credentials);
+            const rolesArray = Array.isArray(roles) ? roles : Array.from(roles || []);
+            const user = { token, username: credentials.username, roles: rolesArray };
 
             // Сохраняем данные в localStorage
             localStorage.setItem('user', JSON.stringify(user));
             localStorage.setItem('token', token);
 
             setUser(user);
-            navigate('/');
+
+            // Редирект на страницу согласно роли пользователя
+            const redirectPath = getRedirectPath(rolesArray);
+            navigate(redirectPath);
             setError(null);
         } catch (err) {
             setError(err.response?.data?.message || 'Login failed');
@@ -61,12 +67,12 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const token = localStorage.getItem('token');
         if (token && !user) {
-            // Здесь можно добавить проверку токена на бэкенде
             const storedUser = localStorage.getItem('user');
             if (storedUser) {
                 setUser(JSON.parse(storedUser));
             }
         }
+        setInitialLoading(false);
     }, []);
 
     return (
@@ -74,6 +80,7 @@ export const AuthProvider = ({ children }) => {
             user,
             error,
             loading,
+            initialLoading,
             login,
             register,
             logout,

@@ -1,23 +1,67 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
+import { CircularProgress, Box } from '@mui/material';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Dashboard from './pages/Dashboard';
+import Recruit from './pages/Recruit';
 import Commissar from './pages/Commissar';
-import PrivateRoute from './components/PrivateRoute';
 import Escort from './pages/Escort';
+import Unauthorized from './pages/Unauthorized';
+import RoleRoute from './components/RoleRoute';
 import { useAuth } from './context/AuthContext';
+import { ROLES, getRedirectPath } from './constants/roles';
 
 function App() {
-    const { isAuthenticated } = useAuth();
+    const { isAuthenticated, user, initialLoading } = useAuth();
+
+    // Показываем загрузку пока проверяем авторизацию
+    if (initialLoading) {
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+                <CircularProgress />
+            </Box>
+        );
+    }
+
+    // Редирект для главной страницы
+    const getHomeRedirect = () => {
+        if (!isAuthenticated) {
+            return <Navigate to="/login" />;
+        }
+        const redirectPath = getRedirectPath(user?.roles || []);
+        return <Navigate to={redirectPath} />;
+    };
+
+    // Редирект для авторизованных пользователей на страницах логина/регистрации
+    const getAuthPageElement = (element) => {
+        if (isAuthenticated) {
+            const redirectPath = getRedirectPath(user?.roles || []);
+            return <Navigate to={redirectPath} />;
+        }
+        return element;
+    };
 
     return (
         <div className="app">
             <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/" element={isAuthenticated ? <PrivateRoute><Dashboard /></PrivateRoute> : <Navigate to="/login" />} />
-                <Route path="/commissar" element={<PrivateRoute><Commissar /></PrivateRoute>} />
-                <Route path="/escort" element={<PrivateRoute><Escort /></PrivateRoute>} />
+                <Route path="/login" element={getAuthPageElement(<Login />)} />
+                <Route path="/register" element={getAuthPageElement(<Register />)} />
+                <Route path="/" element={getHomeRedirect()} />
+                <Route path="/recruit" element={
+                    <RoleRoute roles={[ROLES.RECRUIT]}>
+                        <Recruit />
+                    </RoleRoute>
+                } />
+                <Route path="/commissar" element={
+                    <RoleRoute roles={[ROLES.COMMISSAR]}>
+                        <Commissar />
+                    </RoleRoute>
+                } />
+                <Route path="/escort" element={
+                    <RoleRoute roles={[ROLES.ESCORT]}>
+                        <Escort />
+                    </RoleRoute>
+                } />
+                <Route path="/unauthorized" element={<Unauthorized />} />
             </Routes>
         </div>
     );
