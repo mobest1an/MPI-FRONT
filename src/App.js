@@ -5,6 +5,8 @@ import Register from './pages/Register';
 import Recruit from './pages/Recruit';
 import Commissar from './pages/Commissar';
 import Escort from './pages/Escort';
+import MilitaryPolice from './pages/MilitaryPolice';
+import Complaint from './pages/Complaint';
 import Unauthorized from './pages/Unauthorized';
 import RoleRoute from './components/RoleRoute';
 import { useAuth } from './context/AuthContext';
@@ -45,6 +47,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={getAuthPageElement(<Login />)} />
                 <Route path="/register" element={getAuthPageElement(<Register />)} />
+                <Route path="/complaint" element={<Complaint />} />
                 <Route path="/" element={getHomeRedirect()} />
                 <Route path="/recruit" element={
                     <RoleRoute roles={[ROLES.RECRUIT]}>
@@ -59,6 +62,11 @@ function App() {
                 <Route path="/escort" element={
                     <RoleRoute roles={[ROLES.ESCORT]}>
                         <Escort />
+                    </RoleRoute>
+                } />
+                <Route path="/military-police" element={
+                    <RoleRoute roles={[ROLES.MILITARY_POLICE]}>
+                        <MilitaryPolice />
                     </RoleRoute>
                 } />
                 <Route path="/unauthorized" element={<Unauthorized />} />

@@ -120,4 +120,44 @@ export const dismissConvoy = async () => {
     await api.post('/api/v1/escort/convoy/dismiss');
 };
 
+export const getConvoyComplaintsCount = async () => {
+    const response = await api.get('/api/v1/escort/convoy/complaints-count');
+    return response.data; // number
+};
+
+// ==================== Public (Anonymous) ====================
+
+export const getActiveConvoys = async () => {
+    const response = await api.get('/api/v1/public/convoys');
+    return response.data; // [{ convoyId, escortUsername }]
+};
+
+export const submitComplaint = async (convoyId) => {
+    await api.post('/api/v1/public/complaint', { convoyId });
+};
+
+// ==================== Military Police ====================
+
+export const getComplaints = async () => {
+    const response = await api.get('/api/v1/military-police/complaints');
+    return response.data; // [{ convoyId, escortUsername, complaintsCount, takenByOther }]
+};
+
+export const getActiveComplaint = async () => {
+    const response = await api.get('/api/v1/military-police/complaints/active');
+    return response.data; // { convoyId, escortUsername, recruitUsernames, complaintsCount } или null
+};
+
+export const takeComplaint = async (convoyId) => {
+    await api.post(`/api/v1/military-police/complaints/${convoyId}/take`);
+};
+
+export const completeComplaint = async (convoyId) => {
+    await api.post(`/api/v1/military-police/complaints/${convoyId}/complete`);
+};
+
+export const cancelComplaint = async (convoyId) => {
+    await api.post(`/api/v1/military-police/complaints/${convoyId}/cancel`);
+};
+
 export default api;

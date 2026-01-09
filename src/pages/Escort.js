@@ -14,13 +14,14 @@ import {
     Checkbox,
     Chip
 } from '@mui/material';
-import { getWaitingRoom, getActiveConvoy, createConvoy, dismissConvoy } from '../utils/api';
+import { getWaitingRoom, getActiveConvoy, createConvoy, dismissConvoy, getConvoyComplaintsCount } from '../utils/api';
 import Header from '../components/Header';
 
 const Escort = () => {
     const [waitingRoom, setWaitingRoom] = useState([]);
     const [activeConvoy, setActiveConvoy] = useState(null);
     const [selectedIds, setSelectedIds] = useState([]);
+    const [complaintsCount, setComplaintsCount] = useState(0);
     const [loading, setLoading] = useState({
         initial: true,
         action: false
@@ -28,10 +29,11 @@ const Escort = () => {
     const [error, setError] = useState(null);
     const [success, setSuccess] = useState(null);
 
-    const fetchData = useCallback(async () => {
+    const fetchData = useCallback(async (isInitial = false) => {
         try {
-            setLoading(prev => ({ ...prev, initial: true }));
-            setError(null);
+            if (isInitial) {
+                setLoading(prev => ({ ...prev, initial: true }));
+            }
 
             // Проверяем, есть ли активный конвой
             const convoy = await getActiveConvoy();
@@ -40,20 +42,30 @@ const Escort = () => {
             if (convoy && convoy.convoyId) {
                 setActiveConvoy(convoy);
                 setWaitingRoom([]);
+                // Получаем количество жалоб на конвой
+                const count = await getConvoyComplaintsCount();
+                setComplaintsCount(count || 0);
             } else {
                 setActiveConvoy(null);
+                setComplaintsCount(0);
                 const room = await getWaitingRoom();
                 setWaitingRoom(room || []);
             }
         } catch (err) {
-            setError(err.response?.data?.message || 'Ошибка при загрузке данных');
+            if (isInitial) {
+                setError(err.response?.data?.message || 'Ошибка при загрузке данных');
+            }
         } finally {
-            setLoading(prev => ({ ...prev, initial: false }));
+            if (isInitial) {
+                setLoading(prev => ({ ...prev, initial: false }));
+            }
         }
     }, []);
 
     useEffect(() => {
-        fetchData();
+        fetchData(true);
+        const interval = setInterval(() => fetchData(false), 2000);
+        return () => clearInterval(interval);
     }, [fetchData]);
 
     const handleToggle = (summonId) => {
@@ -175,6 +187,12 @@ const Escort = () => {
                 Призывники в конвое. После доставки нажмите "Распустить конвой"
             </Typography>
 
+            {complaintsCount > 0 && (
+                <Alert severity="warning" sx={{ mb: 2 }}>
+                    На ваш конвой подано жалоб: {complaintsCount}
+                </Alert>
+            )}
+
             <Paper elevation={3} sx={{ maxHeight: 400, overflow: 'auto', mb: 3 }}>
                 <List>
                     {activeConvoy.recruits.map((recruit) => (
@@ -238,15 +256,6 @@ const Escort = () => {
                     ) : (
                         renderWaitingRoom()
                     )}
-
-                    <Button
-                        variant="outlined"
-                        onClick={fetchData}
-                        disabled={loading.initial || loading.action}
-                        sx={{ mt: 2 }}
-                    >
-                        Обновить
-                    </Button>
                 </Box>
             </Container>
         </>

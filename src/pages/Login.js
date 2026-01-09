@@ -92,6 +92,16 @@ const Login = () => {
                             Don't have an account? Sign Up
                         </Button>
                     </Box>
+                    <Box sx={{ textAlign: 'center', mt: 2 }}>
+                        <Button 
+                            onClick={() => navigate('/complaint')} 
+                            variant="outlined" 
+                            color="error"
+                            size="small"
+                        >
+                            Подать жалобу на конвой
+                        </Button>
+                    </Box>
                 </Box>
             </Paper>
         </Container>
