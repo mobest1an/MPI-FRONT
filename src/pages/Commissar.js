@@ -24,7 +24,8 @@ import {
     getQueue,
     summonRecruit,
     getCurrentSummoned,
-    sendToWaitingRoom
+    sendToWaitingRoom,
+    rejectRecruit
 } from '../utils/api';
 import Header from '../components/Header';
 
@@ -109,6 +110,26 @@ const Commissar = () => {
         }
     };
 
+    const handleRejectRecruit = async () => {
+        if (!currentRecruit) return;
+
+        try {
+            setLoading(prev => ({ ...prev, action: true }));
+            setError(null);
+
+            await rejectRecruit(currentRecruit.username);
+            setSuccess(`${currentRecruit.username} возвращён в начало`);
+            setTimeout(() => setSuccess(null), 3000);
+            setSelectedBranch('');
+            
+            await fetchData();
+        } catch (err) {
+            setError(err.response?.data?.message || 'Ошибка при отклонении призывника');
+        } finally {
+            setLoading(prev => ({ ...prev, action: false }));
+        }
+    };
+
     // Проверка есть ли вызванный призывник
     const hasSummoned = currentRecruit !== null;
 
@@ -141,19 +162,30 @@ const Commissar = () => {
                         </Select>
                     </FormControl>
 
-                    <Button
-                        variant="contained"
-                        color="secondary"
-                        onClick={handleSendToWaitingRoom}
-                        disabled={loading.action || !selectedBranch}
-                        fullWidth
-                    >
-                        {loading.action ? (
-                            <CircularProgress size={24} color="inherit" />
-                        ) : (
-                            'Отправить в зал ожидания'
-                        )}
-                    </Button>
+                    <Box sx={{ display: 'flex', gap: 2 }}>
+                        <Button
+                            variant="contained"
+                            color="secondary"
+                            onClick={handleSendToWaitingRoom}
+                            disabled={loading.action || !selectedBranch}
+                            sx={{ flex: 1 }}
+                        >
+                            {loading.action ? (
+                                <CircularProgress size={24} color="inherit" />
+                            ) : (
+                                'Отправить в зал ожидания'
+                            )}
+                        </Button>
+                        <Button
+                            variant="outlined"
+                            color="error"
+                            onClick={handleRejectRecruit}
+                            disabled={loading.action}
+                            sx={{ bgcolor: 'white' }}
+                        >
+                            Отклонить
+                        </Button>
+                    </Box>
                 </CardContent>
             </Card>
         );

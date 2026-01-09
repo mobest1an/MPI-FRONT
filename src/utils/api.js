@@ -49,6 +49,15 @@ export const checkCommissarReady = async (username) => {
     return response.data; // boolean
 };
 
+export const leaveQueue = async () => {
+    await api.post('/api/v1/recruit/queue/leave');
+};
+
+export const getRecruitStatus = async () => {
+    const response = await api.get('/api/v1/recruit/status');
+    return response.data; // { status, militaryBranch }
+};
+
 // ==================== Commissar - Queue ====================
 
 export const getQueue = async () => {
@@ -68,6 +77,10 @@ export const getCurrentSummoned = async () => {
 export const hasSummonedRecruit = async () => {
     const response = await api.get('/api/v1/commissar/queue/has-summoned');
     return response.data; // boolean
+};
+
+export const rejectRecruit = async (username) => {
+    await api.post('/api/v1/commissar/queue/reject', { username });
 };
 
 // ==================== Commissar - Waiting Room ====================
