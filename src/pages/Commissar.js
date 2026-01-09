@@ -137,16 +137,16 @@ const Commissar = () => {
         if (!hasSummoned) return null;
 
         return (
-            <Card variant="outlined" sx={{ mb: 4, bgcolor: 'primary.light' }}>
+            <Card variant="outlined" sx={{ mb: 4, borderColor: 'primary.main', borderWidth: 2 }}>
                 <CardContent>
-                    <Typography variant="h6" gutterBottom color="primary.contrastText">
+                    <Typography variant="h6" gutterBottom color="primary.main">
                         Текущий призывник
                     </Typography>
-                    <Typography variant="h5" sx={{ mb: 2 }} color="primary.contrastText">
+                    <Typography variant="h5" sx={{ mb: 2 }} color="primary.main">
                         {currentRecruit.username}
                     </Typography>
 
-                    <FormControl fullWidth sx={{ mb: 2, bgcolor: 'white', borderRadius: 1 }}>
+                    <FormControl fullWidth sx={{ mb: 2 }}>
                         <InputLabel id="branch-select-label">Род войск</InputLabel>
                         <Select
                             labelId="branch-select-label"
@@ -165,7 +165,7 @@ const Commissar = () => {
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <Button
                             variant="contained"
-                            color="secondary"
+                            color="primary"
                             onClick={handleSendToWaitingRoom}
                             disabled={loading.action || !selectedBranch}
                             sx={{ flex: 1 }}
@@ -181,7 +181,6 @@ const Commissar = () => {
                             color="error"
                             onClick={handleRejectRecruit}
                             disabled={loading.action}
-                            sx={{ bgcolor: 'white' }}
                         >
                             Отклонить
                         </Button>

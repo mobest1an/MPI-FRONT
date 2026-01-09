@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import PersonAddOutlinedIcon from '@mui/icons-material/PersonAddOutlined';
 import Avatar from '@mui/material/Avatar';
+import Header from '../components/Header';
 
 const Register = () => {
     const { register, error, loading } = useAuth();
@@ -26,11 +27,11 @@ const Register = () => {
             confirmPassword: '',
         },
         validationSchema: Yup.object({
-            username: Yup.string().required('Username is required'),
-            password: Yup.string().min(6, 'Password must be at least 6 characters').required('Required'),
+            username: Yup.string().required('Имя пользователя обязательно'),
+            password: Yup.string().min(6, 'Пароль должен содержать минимум 6 символов').required('Обязательное поле'),
             confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Passwords must match')
-                .required('Required'),
+                .oneOf([Yup.ref('password'), null], 'Пароли должны совпадать')
+                .required('Обязательное поле'),
         }),
         onSubmit: async (values) => {
             try {
@@ -45,13 +46,15 @@ const Register = () => {
     });
 
     return (
-        <Container component="main" maxWidth="xs">
-            <Paper elevation={3} sx={{ mt: 8, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <>
+            <Header title="Регистрация" showUserInfo={false} />
+            <Container component="main" maxWidth="xs">
+                <Paper elevation={3} sx={{ mt: 4, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                     <PersonAddOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign up
+                    Регистрация
                 </Typography>
 
                 {error && <Alert severity="error" sx={{ width: '100%', mt: 2 }}>{error}</Alert>}
@@ -62,7 +65,7 @@ const Register = () => {
                         required
                         fullWidth
                         id="username"
-                        label="Username"
+                        label="Имя пользователя"
                         name="username"
                         autoComplete="username"
                         autoFocus
@@ -76,7 +79,7 @@ const Register = () => {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Пароль"
                         type="password"
                         id="password"
                         autoComplete="new-password"
@@ -90,7 +93,7 @@ const Register = () => {
                         required
                         fullWidth
                         name="confirmPassword"
-                        label="Confirm Password"
+                        label="Подтвердите пароль"
                         type="password"
                         id="confirmPassword"
                         value={formik.values.confirmPassword}
@@ -105,16 +108,17 @@ const Register = () => {
                         sx={{ mt: 3, mb: 2 }}
                         disabled={loading}
                     >
-                        {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign Up'}
+                        {loading ? <CircularProgress size={24} color="inherit" /> : 'Зарегистрироваться'}
                     </Button>
                     <Box sx={{ textAlign: 'center' }}>
                         <Button onClick={() => navigate('/login')} variant="text" size="small">
-                            Already have an account? Sign in
+                            Уже есть аккаунт? Войти
                         </Button>
                     </Box>
                 </Box>
             </Paper>
         </Container>
+        </>
     );
 };
 

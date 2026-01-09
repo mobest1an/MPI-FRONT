@@ -109,28 +109,28 @@ const MilitaryPolice = () => {
         if (!activeComplaint) return null;
 
         return (
-            <Card variant="outlined" sx={{ bgcolor: 'warning.light' }}>
+            <Card variant="outlined" sx={{ borderColor: 'primary.main', borderWidth: 2 }}>
                 <CardContent>
-                    <Typography variant="h5" gutterBottom color="warning.contrastText">
+                    <Typography variant="h5" gutterBottom color="primary.main">
                         Активная жалоба
                     </Typography>
 
                     <Box sx={{ mb: 3 }}>
-                        <Typography variant="h6" color="warning.contrastText">
+                        <Typography variant="h6" color="primary.main">
                             Конвой #{activeComplaint.convoyId}
                         </Typography>
-                        <Typography variant="body1" color="warning.contrastText">
+                        <Typography variant="body1">
                             <strong>Конвоир:</strong> {activeComplaint.escortUsername}
                         </Typography>
-                        <Typography variant="body1" color="warning.contrastText">
+                        <Typography variant="body1">
                             <strong>Количество жалоб:</strong> {activeComplaint.complaintsCount}
                         </Typography>
-                        <Typography variant="body1" color="warning.contrastText" sx={{ mt: 1 }}>
+                        <Typography variant="body1" sx={{ mt: 1 }}>
                             <strong>Призывники в конвое:</strong>
                         </Typography>
                         <Box sx={{ ml: 2 }}>
                             {activeComplaint.recruitUsernames.map((username, index) => (
-                                <Typography key={index} variant="body2" color="warning.contrastText">
+                                <Typography key={index} variant="body2">
                                     • {username}
                                 </Typography>
                             ))}
@@ -140,7 +140,7 @@ const MilitaryPolice = () => {
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <Button
                             variant="contained"
-                            color="success"
+                            color="primary"
                             onClick={handleCompleteComplaint}
                             disabled={loading.action}
                             sx={{ flex: 1 }}
@@ -156,7 +156,6 @@ const MilitaryPolice = () => {
                             color="error"
                             onClick={handleCancelComplaint}
                             disabled={loading.action}
-                            sx={{ bgcolor: 'white' }}
                         >
                             Отменить
                         </Button>
@@ -203,7 +202,7 @@ const MilitaryPolice = () => {
                                         </TableCell>
                                         <TableCell align="right">
                                             <Button
-                                                variant="contained"
+                                                variant="outlined"
                                                 color="primary"
                                                 onClick={() => handleTakeComplaint(complaint.convoyId)}
                                                 disabled={loading.action || complaint.takenByOther}

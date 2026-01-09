@@ -15,6 +15,7 @@ import {
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { getActiveConvoys, submitComplaint } from '../utils/api';
+import Header from '../components/Header';
 
 const Complaint = () => {
     const navigate = useNavigate();
@@ -66,20 +67,25 @@ const Complaint = () => {
 
     if (success) {
         return (
-            <Container maxWidth="sm">
-                <Box sx={{ mt: 8 }}>
-                    <Alert severity="success">
-                        Жалоба успешно подана! Вы будете перенаправлены на страницу входа...
-                    </Alert>
-                </Box>
-            </Container>
+            <>
+                <Header title="Подача жалобы" showUserInfo={false} />
+                <Container maxWidth="sm">
+                    <Box sx={{ mt: 4 }}>
+                        <Alert severity="success">
+                            Жалоба успешно подана! Вы будете перенаправлены на страницу входа...
+                        </Alert>
+                    </Box>
+                </Container>
+            </>
         );
     }
 
     return (
-        <Container maxWidth="sm">
-            <Box sx={{ mt: 8 }}>
-                <Card variant="outlined">
+        <>
+            <Header title="Подача жалобы" showUserInfo={false} />
+            <Container maxWidth="sm">
+                <Box sx={{ mt: 4 }}>
+                    <Card variant="outlined">
                     <CardContent>
                         <Typography variant="h5" gutterBottom>
                             Подать жалобу на конвой
@@ -145,6 +151,7 @@ const Complaint = () => {
                 </Card>
             </Box>
         </Container>
+        </>
     );
 };
 

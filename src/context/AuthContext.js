@@ -34,7 +34,7 @@ export const AuthProvider = ({ children }) => {
             navigate(redirectPath);
             setError(null);
         } catch (err) {
-            setError(err.response?.data?.message || 'Login failed');
+            setError(err.response?.data?.message || 'Ошибка входа');
             throw err;
         } finally {
             setLoading(false);
@@ -48,7 +48,7 @@ export const AuthProvider = ({ children }) => {
             navigate('/login');
             setError(null);
         } catch (err) {
-            setError(err.response?.data?.message || 'Registration failed');
+            setError(err.response?.data?.message || 'Ошибка регистрации');
             throw err;
         } finally {
             setLoading(false);

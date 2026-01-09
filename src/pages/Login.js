@@ -14,6 +14,7 @@ import {
 } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Avatar from '@mui/material/Avatar';
+import Header from '../components/Header';
 
 const Login = () => {
     const { login, error, loading } = useAuth();
@@ -25,8 +26,8 @@ const Login = () => {
             password: '',
         },
         validationSchema: Yup.object({
-            username: Yup.string().required('Username is required'),
-            password: Yup.string().required('Password is required'),
+            username: Yup.string().required('Имя пользователя обязательно'),
+            password: Yup.string().required('Пароль обязателен'),
         }),
         onSubmit: async (values) => {
             try {
@@ -38,13 +39,15 @@ const Login = () => {
     });
 
     return (
-        <Container component="main" maxWidth="xs">
-            <Paper elevation={3} sx={{ mt: 8, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <>
+            <Header title="Вход в систему" showUserInfo={false} />
+            <Container component="main" maxWidth="xs">
+            <Paper elevation={3} sx={{ mt: 4, p: 4, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
                     <LockOutlinedIcon />
                 </Avatar>
                 <Typography component="h1" variant="h5">
-                    Sign in
+                    Вход
                 </Typography>
 
                 {error && <Alert severity="error" sx={{ width: '100%', mt: 2 }}>{error}</Alert>}
@@ -55,7 +58,7 @@ const Login = () => {
                         required
                         fullWidth
                         id="username"
-                        label="Username"
+                        label="Имя пользователя"
                         name="username"
                         autoComplete="username"
                         autoFocus
@@ -69,7 +72,7 @@ const Login = () => {
                         required
                         fullWidth
                         name="password"
-                        label="Password"
+                        label="Пароль"
                         type="password"
                         id="password"
                         autoComplete="current-password"
@@ -85,11 +88,11 @@ const Login = () => {
                         sx={{ mt: 3, mb: 2 }}
                         disabled={loading}
                     >
-                        {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
+                        {loading ? <CircularProgress size={24} color="inherit" /> : 'Войти'}
                     </Button>
                     <Box sx={{ textAlign: 'center' }}>
                         <Button onClick={() => navigate('/register')} variant="text" size="small">
-                            Don't have an account? Sign Up
+                            Нет аккаунта? Зарегистрироваться
                         </Button>
                     </Box>
                     <Box sx={{ textAlign: 'center', mt: 2 }}>
@@ -105,6 +108,7 @@ const Login = () => {
                 </Box>
             </Paper>
         </Container>
+        </>
     );
 };
 
