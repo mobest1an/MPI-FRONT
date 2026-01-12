@@ -24,6 +24,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:coverage": "./scripts/test-with-coverage.sh",
+    "test:check": "./scripts/check-tests.sh",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
