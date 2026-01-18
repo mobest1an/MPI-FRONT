@@ -1,0 +1,11 @@
+capabilities:
+  browserName: "firefox"
+  "moz:firefoxOptions":
+    args:
+      - "-verbose"
+    log:
+      level: "trace"
+  loggingPrefs:
+    browser: "ALL"
+    driver: "ALL"
+    performance: "ALL"
