@@ -27,7 +27,7 @@
     "test": "react-scripts test",
     "test:coverage": "./scripts/test-with-coverage.sh",
     "test:check": "./scripts/check-tests.sh",
-    "test:selenium": "npx selenium-side-runner MPI.side -s http://localhost:4444",
+    "test:selenium": "npx selenium-side-runner MPI_flow.side",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {

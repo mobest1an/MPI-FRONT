@@ -1,0 +1,3680 @@
+{
+  "id": "092d6687-24af-472d-adea-0634777bf673",
+  "version": "3.0",
+  "name": "New Project",
+  "url": "http://www.google.com",
+  "urls": [
+    "http://www.google.com"
+  ],
+  "plugins": [],
+  "suites": [
+    {
+      "id": "6ccd3c9e-55ba-4624-889d-b5356f04be36",
+      "name": "MPI flow",
+      "parallel": false,
+      "persistSession": false,
+      "tests": [
+        "03adcf54-9d1a-4210-b776-8fae9c2c8c69",
+        "fd01cd3d-27b6-448b-a2ff-cc6007bf00c2"
+      ],
+      "timeout": 30000
+    }
+  ],
+  "tests": [
+    {
+      "id": "fd01cd3d-27b6-448b-a2ff-cc6007bf00c2",
+      "name": "full correct flow",
+      "commands": [
+        {
+          "id": "50708f59-6799-4ef3-a805-6e815c8cc7b6",
+          "command": "open",
+          "target": "http://localhost:3000/login",
+          "value": ""
+        },
+        {
+          "command": "mouseDown",
+          "target": "id=username-label",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "35f41014-ad45-46c0-9ecf-cd6a1c0df438",
+          "targets": [
+            [
+              "id=username-label",
+              "id"
+            ],
+            [
+              "css=[data-shrink]",
+              "css:data-attr"
+            ],
+            [
+              "css=#username-label",
+              "css:finder"
+            ],
+            [
+              "xpath=(//label[@id='username-label'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/label)[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//label[contains(.,'Имя пользователя *')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "mouseUp",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "5e284904-8f45-4ba5-b784-b7d7fc57cb83",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=.MuiFormControl-root:nth-child(1)",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b6f559d7-641a-41bf-a5b7-8302648aea91",
+          "targets": [
+            [
+              "css=.MuiFormControl-root:nth-child(1)",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "ivan",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d9f05f5a-51dd-4167-afec-521eb71a2a74",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a939ac5d-c565-4c66-9416-8fa5c65045fa",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "3ce1a43e-41ad-46ec-b5da-66c06981e539",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "ivanivan",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "82963102-ea10-4edb-8f63-95c14b59d7da",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "8968a964-6736-4bbe-8ec6-770e80fa34e4",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b831a2c2-7d66-47a4-b6ca-0811a0f3c5d0",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "5d625dc6-6189-4b91-8945-283bdab62d17",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "de20eaa5-aab7-47b5-9a58-c5add52d91fc",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "e35ec5de-7f5c-4261-bff1-07674bee3b82",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "bc9c3b67-7490-493b-8dd9-c400221cb497",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "erik",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a627307b-6c40-43aa-90b6-52e959d4f8df",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "715bbf51-1701-41a2-b39e-4c1b72bf53f6",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "erikerik",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "9e0a3659-db78-4342-ad71-5f919f737443",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "08b79df6-716d-4345-8c0a-791096df47ba",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "e74cf978-1032-4c69-899c-5a5253671efc",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b8c16845-59cd-4de0-9c4d-f775c98a379d",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "502d4647-13f0-451d-b15e-216f269f8aff",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "2f4b5e6a-8c9e-4b09-aade-ba20d3b9733a",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d6ff64c8-02a5-4212-b407-2005ba7bb779",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "167815db-4d7d-4e9f-9ab7-b7e0e256a977",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "pavel",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "7a0ede18-01b1-4993-a568-fd0d924a5041",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "16cee13a-9993-43f4-8c98-120987c347ef",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "89c809d5-d178-414c-a02d-0b8e647de0a3",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "pavelpavel",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "0cd0b14f-36e8-42ee-8244-a1536b576b4f",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "31795186-ebd8-4352-883b-f983caf61de7",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "cba3c86d-ee6d-4b7d-91f9-8103f7e9e947",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "141b18da-4557-4491-9e2c-ecefb017c1b8",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b5853ee6-bc5a-479b-a10d-03e07f2b53c3",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "commissar",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "be778b7f-9e1f-4663-8484-56a21fee8fb1",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "585565f3-2e9b-406b-900f-902565bd3c81",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "7ea428f7-0381-48fe-a1de-7dafc2b25124",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "commissar",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "8ecd1b9c-bc12-41f3-bc58-ae730dd763f3",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "eb997338-1eaa-4c8f-9686-79041a085faa",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-summon-ivan",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "f8b5ea59-f5b9-49fe-a907-e0f4aca81c55",
+          "targets": [
+            [
+              "id=btn-summon-ivan",
+              "id"
+            ],
+            [
+              "css=#btn-summon-ivan",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-summon-ivan'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/table/tbody/tr/td/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseDown",
+          "target": "id=select-military-branch",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "3f7503bc-7118-4928-b927-1b6667ca3959",
+          "targets": [
+            [
+              "id=select-military-branch",
+              "id"
+            ],
+            [
+              "css=#select-military-branch",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='select-military-branch'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div/div/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseUp",
+          "target": "css=.MuiBackdrop-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "89522bc3-c273-4bee-a7bd-90938ba53cb6",
+          "targets": [
+            [
+              "css=.MuiBackdrop-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='menu-']/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=body",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a5ba3929-f0bf-401b-b6f0-d208811ff20f",
+          "targets": [
+            [
+              "css=body",
+              "css:finder"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=[data-value=\"Пехота\"]",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "475a7b32-9869-4ee2-860f-0ec4e2010ecd",
+          "targets": [
+            [
+              "css=[data-value=\"Пехота\"]",
+              "css:data-attr"
+            ],
+            [
+              "css=.MuiMenuItem-root:nth-child(1)",
+              "css:finder"
+            ],
+            [
+              "xpath=(//ul[@id='«rv»']/li)[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//li[contains(.,'Пехота')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-send-to-waiting-room",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "cf0eefc6-b721-421a-a749-fe8a1964434b",
+          "targets": [
+            [
+              "id=btn-send-to-waiting-room",
+              "id"
+            ],
+            [
+              "css=#btn-send-to-waiting-room",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-send-to-waiting-room'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-send-to-waiting-room",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "4509fdb4-c13e-47bf-86bc-77e7cf554472",
+          "targets": [
+            [
+              "id=btn-send-to-waiting-room",
+              "id"
+            ],
+            [
+              "css=#btn-send-to-waiting-room",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-send-to-waiting-room'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-summon-erik",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "80657f96-05d9-4ca0-bed9-5c2daab31f6f",
+          "targets": [
+            [
+              "id=btn-summon-erik",
+              "id"
+            ],
+            [
+              "css=#btn-summon-erik",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-summon-erik'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/table/tbody/tr/td/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-summon-erik",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6b14b30a-7327-4859-9bf6-bd4470c20d90",
+          "targets": [
+            [
+              "id=btn-summon-erik",
+              "id"
+            ],
+            [
+              "css=#btn-summon-erik",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-summon-erik'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/table/tbody/tr/td/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseDown",
+          "target": "id=select-military-branch",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "fdfb0d4f-97d0-4e51-b936-84b619cdf162",
+          "targets": [
+            [
+              "id=select-military-branch",
+              "id"
+            ],
+            [
+              "css=#select-military-branch",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='select-military-branch'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div/div/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseUp",
+          "target": "css=.MuiBackdrop-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "14435528-62ac-4474-a0f4-c2dd739209a1",
+          "targets": [
+            [
+              "css=.MuiBackdrop-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='menu-']/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=body",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "8ab4f25b-8463-4a2e-8fe1-e9d920383a6b",
+          "targets": [
+            [
+              "css=body",
+              "css:finder"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=[data-value=\"Танковые войска\"]",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "ea53d117-cef7-4ca2-a50c-8c1cc4a630bf",
+          "targets": [
+            [
+              "css=[data-value=\"Танковые войска\"]",
+              "css:data-attr"
+            ],
+            [
+              "css=.MuiMenuItem-root:nth-child(2)",
+              "css:finder"
+            ],
+            [
+              "xpath=(//ul[@id='«r17»']/li[2])[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//li[contains(.,'Танковые войска')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-send-to-waiting-room",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "91abc98a-902a-42ed-acc9-de8db4b32c59",
+          "targets": [
+            [
+              "id=btn-send-to-waiting-room",
+              "id"
+            ],
+            [
+              "css=#btn-send-to-waiting-room",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-send-to-waiting-room'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-send-to-waiting-room",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "8be372d2-7390-4e49-a7a1-79fbcee5a7f3",
+          "targets": [
+            [
+              "id=btn-send-to-waiting-room",
+              "id"
+            ],
+            [
+              "css=#btn-send-to-waiting-room",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-send-to-waiting-room'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-summon-pavel",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "aab71145-4128-4547-8754-7c74e06cef9f",
+          "targets": [
+            [
+              "id=btn-summon-pavel",
+              "id"
+            ],
+            [
+              "css=#btn-summon-pavel",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-summon-pavel'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/table/tbody/tr/td/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseDown",
+          "target": "id=select-military-branch",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "f1724329-8f54-4340-bc50-b99f98921139",
+          "targets": [
+            [
+              "id=select-military-branch",
+              "id"
+            ],
+            [
+              "css=#select-military-branch",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='select-military-branch'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/div/div/div/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseUp",
+          "target": "css=.MuiBackdrop-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "59e86aa5-4b2c-4795-8dfe-985020813285",
+          "targets": [
+            [
+              "css=.MuiBackdrop-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='menu-']/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=body",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a7bd8125-7848-4bdf-a55e-f074d9107ba6",
+          "targets": [
+            [
+              "css=body",
+              "css:finder"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=[data-value=\"Артиллерия\"]",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "facb972f-555b-4b2f-941b-f6fb306c7557",
+          "targets": [
+            [
+              "css=[data-value=\"Артиллерия\"]",
+              "css:data-attr"
+            ],
+            [
+              "css=.MuiButtonBase-root:nth-child(3)",
+              "css:finder"
+            ],
+            [
+              "xpath=(//ul[@id='«r1d»']/li[3])[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//li[contains(.,'Артиллерия')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-send-to-waiting-room",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "88d85d3c-c08f-40d0-ae85-b13388d8b54a",
+          "targets": [
+            [
+              "id=btn-send-to-waiting-room",
+              "id"
+            ],
+            [
+              "css=#btn-send-to-waiting-room",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-send-to-waiting-room'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "c28d14bd-4989-42d2-a5e3-52c3475a329b",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "ab583e1a-f3c5-44c3-adec-8e50c482692f",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "ivan",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "9fe790d1-e02f-45c4-a6bb-a7e1b465d601",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "bf1f7e57-adfd-4712-ab84-62a1ad7bb042",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "006475d5-7aee-4f2b-8d0b-e586e549db35",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "ivanivan",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "7e049aff-d1cd-4789-a00a-cbac9776316c",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d5d61b03-8ba8-4582-94f0-eda6c83b3c9b",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "2a98e732-8880-4de1-8b08-72ecd5262cd8",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "af49caa9-de03-4216-8456-0d2fff5c4951",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "escort",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "677b5aec-a33f-4eae-9b39-c6a82f353400",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "12914ce8-ef42-4bab-8b62-a35ce0b2b016",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "escort",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "567efb40-e02b-4e37-9a65-35b717495310",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "306a616f-1d75-4eee-b72b-25efc466cba5",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "//click",
+          "target": "css=#list-item-recruit-20 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6b8c4023-bf22-4678-b14d-6c679da57cfa",
+          "targets": [
+            [
+              "css=#list-item-recruit-20 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-20']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=#list-item-recruit-1 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b5ab132e-6972-4228-b67d-8a1f01cfe62e",
+          "targets": [
+            [
+              "css=#list-item-recruit-1 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-1']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ],
+          "isBreakpoint": false
+        },
+        {
+          "command": "click",
+          "target": "css=#list-item-recruit-3 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "0455226f-cddd-442a-ae47-92a7c53a28cd",
+          "targets": [
+            [
+              "css=#list-item-recruit-3 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-3']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=#list-item-recruit-2 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "5ba93d08-1c44-4891-b0e9-c0e417d01028",
+          "targets": [
+            [
+              "css=#list-item-recruit-2 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-2']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "//click",
+          "target": "css=#list-item-recruit-26 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6e2ec8b4-0a61-49bd-95ac-1c86bb38d354",
+          "targets": [
+            [
+              "css=#list-item-recruit-26 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-26']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "//click",
+          "target": "css=#list-item-recruit-22 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "9e43b6ce-6daa-4d5f-b57f-8cfa58f4912a",
+          "targets": [
+            [
+              "css=#list-item-recruit-22 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-22']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "//click",
+          "target": "css=#list-item-recruit-21 .MuiButtonBase-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "7455cf47-a442-4a33-ade7-110dac648279",
+          "targets": [
+            [
+              "css=#list-item-recruit-21 .MuiButtonBase-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//li[@id='list-item-recruit-21']/div/span)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-create-convoy",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "ab966ff0-415b-4ae1-b83d-5f05042e46af",
+          "targets": [
+            [
+              "id=btn-create-convoy",
+              "id"
+            ],
+            [
+              "css=#btn-create-convoy",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-create-convoy'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "e59f4205-0691-440f-80c9-f883e1a44d73",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "ea557b72-e858-4d21-bf9a-15029a656cd8",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-go-to-register",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "70c9eb0d-f3fe-453c-8f45-900f76e55a6a",
+          "targets": [
+            [
+              "id=btn-go-to-register",
+              "id"
+            ],
+            [
+              "css=#btn-go-to-register",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-go-to-register'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[3]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-go-to-complaint",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "c5ab40d7-95b3-491a-bce1-9220c1aa48cf",
+          "targets": [
+            [
+              "id=btn-go-to-complaint",
+              "id"
+            ],
+            [
+              "css=#btn-go-to-complaint",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-go-to-complaint'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[4]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseDown",
+          "target": "id=select-convoy",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "04c3611e-06cf-49f1-9800-753545a956f4",
+          "targets": [
+            [
+              "id=select-convoy",
+              "id"
+            ],
+            [
+              "css=#select-convoy",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='select-convoy'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div/div/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseUp",
+          "target": "css=.MuiBackdrop-root",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "56eae38f-916a-494a-ac08-9f34e0192474",
+          "targets": [
+            [
+              "css=.MuiBackdrop-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//div[@id='menu-']/div)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=body",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "cf0c4810-1b11-4576-8083-63ed5aac260f",
+          "targets": [
+            [
+              "css=body",
+              "css:finder"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "css=[data-value=\"1\"]",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "4949689c-f1d0-4db1-9e51-56ee0392f990",
+          "targets": [
+            [
+              "css=[data-value=\"1\"]",
+              "css:data-attr"
+            ],
+            [
+              "css=.MuiMenuItem-root",
+              "css:finder"
+            ],
+            [
+              "xpath=(//ul[@id='«r24»']/li)[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//li[contains(.,'Конвой #1 (конвоир: escort)')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-submit-complaint",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "ed7efa66-8258-4bd5-99a3-9db4630cca14",
+          "targets": [
+            [
+              "id=btn-submit-complaint",
+              "id"
+            ],
+            [
+              "css=#btn-submit-complaint",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-submit-complaint'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "1a3fec2c-ddb8-47aa-b423-c9a881a5f4df",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "military_police",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d11f0d12-95f7-49e6-9173-23108d080cb5",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "9572497d-08f3-4c15-a0e5-7f67aa114e6f",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "military_police",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "e7e2fec9-5b0c-4009-aa39-8e56bbb979f4",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d4de92e0-e56e-4814-b4ca-b8a493a49712",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-take-complaint-1",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "24254596-110b-40c7-8bcc-210c369fec40",
+          "targets": [
+            [
+              "id=btn-take-complaint-1",
+              "id"
+            ],
+            [
+              "css=#btn-take-complaint-1",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-take-complaint-1'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/table/tbody/tr/td[5]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-take-complaint-1",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "91cf13ce-d71a-4ed4-96d4-625e6929cc23",
+          "targets": [
+            [
+              "id=btn-take-complaint-1",
+              "id"
+            ],
+            [
+              "css=#btn-take-complaint-1",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-take-complaint-1'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/table/tbody/tr/td[5]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-complete-complaint",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "78a48f49-0e50-449a-9757-80dbc4f18e23",
+          "targets": [
+            [
+              "id=btn-complete-complaint",
+              "id"
+            ],
+            [
+              "css=#btn-complete-complaint",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-complete-complaint'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-complete-complaint",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "0c912e89-542f-49a3-9d1c-aa6483733b14",
+          "targets": [
+            [
+              "id=btn-complete-complaint",
+              "id"
+            ],
+            [
+              "css=#btn-complete-complaint",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-complete-complaint'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "551b72e1-b0e9-4755-888b-c60f214a2836",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "88487b1d-38b8-4d20-b2af-34ea4cdcbab3",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "escort",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "d356a8dc-71db-45fd-ba6f-d39f0ddf778e",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "8ca76298-04f9-4e73-834d-a424a143a67b",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "c4b0778c-4ef5-4a0d-b87e-1ff53485c590",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "escort",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6694559f-bfc7-481b-ac52-aa57baa5d75d",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "781b9450-6030-42a1-950d-fa5c6111f910",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-dismiss-convoy",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "f707e72b-545f-4530-a57f-eb6e6caef3a5",
+          "targets": [
+            [
+              "id=btn-dismiss-convoy",
+              "id"
+            ],
+            [
+              "css=#btn-dismiss-convoy",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-dismiss-convoy'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-dismiss-convoy",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "82e6205b-9c8b-49b5-ab7a-38547224f985",
+          "targets": [
+            [
+              "id=btn-dismiss-convoy",
+              "id"
+            ],
+            [
+              "css=#btn-dismiss-convoy",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-dismiss-convoy'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "83eb9b0c-10ee-4d8f-b0fb-d5fc90c08e36",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "05ec48e7-7f38-4465-8d92-e43d3e3a4cfb",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "03adcf54-9d1a-4210-b776-8fae9c2c8c69",
+      "name": "incorrect login",
+      "commands": [
+        {
+          "id": "5c92ea46-8aec-49e3-aaff-97e21c5d43a9",
+          "command": "open",
+          "target": "http://localhost:3000/login",
+          "value": ""
+        },
+        {
+          "command": "//click",
+          "target": "id=username-label",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "51d71a77-9dca-4940-a83e-45312f208856",
+          "targets": [
+            [
+              "id=username-label",
+              "id"
+            ],
+            [
+              "css=[data-shrink]",
+              "css:data-attr"
+            ],
+            [
+              "css=#username-label",
+              "css:finder"
+            ],
+            [
+              "xpath=(//label[@id='username-label'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/label)[1]",
+              "xpath:idRelative"
+            ],
+            [
+              "xpath=//label[contains(.,'Имя пользователя *')]",
+              "xpath:innerText"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "883927b7-90a1-4663-9003-a48b390b8552",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "erick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "b735fc95-e1cc-466d-a8ad-ad84be5a5d87",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "38c3b652-2c95-47a8-a670-39170b98ba17",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a5085bd0-f13c-4efe-a09d-c9c5affe5ad1",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "erickerick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "216c4389-c830-4c33-821d-bb305f1a7be2",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "c08501e1-76f5-449e-a84c-509d84376246",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-go-to-register",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "3f0db4cc-3772-43ab-9ebd-6120556f6ef7",
+          "targets": [
+            [
+              "id=btn-go-to-register",
+              "id"
+            ],
+            [
+              "css=#btn-go-to-register",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-go-to-register'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[3]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-go-to-register",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "4744ff21-1b27-4ff9-bd9e-b2bf434289db",
+          "targets": [
+            [
+              "id=btn-go-to-register",
+              "id"
+            ],
+            [
+              "css=#btn-go-to-register",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-go-to-register'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[3]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "72ad20ca-217a-44f0-98d8-95603d586023",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "erick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "f1f0e673-e847-4590-a73f-cf646664b1cf",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "dc1806ab-6f1d-40e4-b547-8d7b54e1495c",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "erickerick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "fb5ea2ad-c866-48eb-b259-5b2948ff30eb",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=confirmPassword",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "1f19a371-73ad-4093-b08f-26dd564cccea",
+          "targets": [
+            [
+              "id=confirmPassword",
+              "id"
+            ],
+            [
+              "name=confirmPassword",
+              "name"
+            ],
+            [
+              "css=#confirmPassword",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='confirmPassword'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[3]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-register-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "132bdd49-a1d3-4e90-90c8-079221906cfc",
+          "targets": [
+            [
+              "id=btn-register-submit",
+              "id"
+            ],
+            [
+              "css=#btn-register-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-register-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=confirmPassword",
+          "value": "erickerick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6690139f-5547-4a4a-9fd3-7649e47722a8",
+          "targets": [
+            [
+              "id=confirmPassword",
+              "id"
+            ],
+            [
+              "name=confirmPassword",
+              "name"
+            ],
+            [
+              "css=#confirmPassword",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='confirmPassword'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[3]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-register-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "46daffb5-456c-4129-8f60-6416e5716dde",
+          "targets": [
+            [
+              "id=btn-register-submit",
+              "id"
+            ],
+            [
+              "css=#btn-register-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-register-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=username",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "167c1fae-def6-4705-b21f-6af290679b88",
+          "targets": [
+            [
+              "window.scrollTo(0,0)",
+              ""
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=username",
+          "value": "erick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "6c8dc4fd-fd72-489c-bc52-1e1b5345dfb8",
+          "targets": [
+            [
+              "id=username",
+              "id"
+            ],
+            [
+              "name=username",
+              "name"
+            ],
+            [
+              "css=#username",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='username'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=password",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "7ba7f6eb-246d-469b-a89b-39b4ca536aa3",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "dffea887-f172-4205-b4d4-23bd0c8566a5",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "type",
+          "target": "id=password",
+          "value": "erickerick",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "9b124d18-eeeb-429e-9853-d808a05dec95",
+          "targets": [
+            [
+              "id=password",
+              "id"
+            ],
+            [
+              "name=password",
+              "name"
+            ],
+            [
+              "css=#password",
+              "css:finder"
+            ],
+            [
+              "xpath=(//input[@id='password'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/div[2]/div/input)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-login-submit",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "da276f9e-6b94-48ed-a64b-0d82ed0507c7",
+          "targets": [
+            [
+              "id=btn-login-submit",
+              "id"
+            ],
+            [
+              "css=#btn-login-submit",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-login-submit'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/main/div/form/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "940694e2-2283-4f88-a6eb-7bec35994813",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "a39f9e84-ad87-4466-be0f-63b1b2506253",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-logout",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "34f442e8-7f63-4883-9bf0-ac047f1a0f44",
+          "targets": [
+            [
+              "id=btn-logout",
+              "id"
+            ],
+            [
+              "css=#btn-logout",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-logout'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/header/div[2]/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        }
+      ]
+    }
+  ],
+  "snapshot": {
+    "dependencies": {},
+    "tests": [],
+    "jest": {
+      "extraGlobals": []
+    }
+  }
+}
