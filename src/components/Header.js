@@ -22,6 +22,7 @@ const Header = ({ title, showUserInfo = true }) => {
                             {user?.username}
                         </Typography>
                         <Button 
+                            id="btn-logout"
                             color="inherit" 
                             onClick={logout}
                             startIcon={<LogoutIcon />}

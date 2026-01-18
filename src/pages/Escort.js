@@ -127,6 +127,7 @@ const Escort = () => {
                     {waitingRoom.length > 0 ? (
                         waitingRoom.map((recruit) => (
                             <ListItem
+                                id={`list-item-recruit-${recruit.summonId}`}
                                 key={recruit.summonId}
                                 dense
                                 button
@@ -134,6 +135,7 @@ const Escort = () => {
                             >
                                 <ListItemIcon>
                                     <Checkbox
+                                        id={`checkbox-recruit-${recruit.summonId}`}
                                         edge="start"
                                         checked={selectedIds.includes(recruit.summonId)}
                                         tabIndex={-1}
@@ -162,6 +164,7 @@ const Escort = () => {
             </Paper>
 
             <Button
+                id="btn-create-convoy"
                 variant="contained"
                 color="primary"
                 onClick={handleCreateConvoy}
@@ -214,6 +217,7 @@ const Escort = () => {
             </Paper>
 
             <Button
+                id="btn-dismiss-convoy"
                 variant="contained"
                 color="error"
                 onClick={handleDismissConvoy}

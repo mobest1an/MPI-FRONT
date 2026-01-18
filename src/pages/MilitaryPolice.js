@@ -139,6 +139,7 @@ const MilitaryPolice = () => {
 
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <Button
+                            id="btn-complete-complaint"
                             variant="contained"
                             color="primary"
                             onClick={handleCompleteComplaint}
@@ -152,6 +153,7 @@ const MilitaryPolice = () => {
                             )}
                         </Button>
                         <Button
+                            id="btn-cancel-complaint"
                             variant="outlined"
                             color="error"
                             onClick={handleCancelComplaint}
@@ -202,6 +204,7 @@ const MilitaryPolice = () => {
                                         </TableCell>
                                         <TableCell align="right">
                                             <Button
+                                                id={`btn-take-complaint-${complaint.convoyId}`}
                                                 variant="outlined"
                                                 color="primary"
                                                 onClick={() => handleTakeComplaint(complaint.convoyId)}

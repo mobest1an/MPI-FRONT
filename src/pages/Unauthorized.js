@@ -13,7 +13,7 @@ const Unauthorized = () => {
                 <Typography variant="body1" sx={{ mb: 3 }}>
                     У вас нет прав для просмотра этой страницы.
                 </Typography>
-                <Button variant="contained" onClick={() => navigate(-1)}>
+                <Button id="btn-go-back" variant="contained" onClick={() => navigate(-1)}>
                     Назад
                 </Button>
             </Box>

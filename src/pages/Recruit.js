@@ -186,6 +186,7 @@ const Recruit = () => {
                         <Box>
                             {isInQueue ? (
                                 <Button
+                                    id="btn-leave-queue"
                                     variant="outlined"
                                     color="error"
                                     onClick={handleLeaveQueue}
@@ -199,6 +200,7 @@ const Recruit = () => {
                                 </Button>
                             ) : (
                                 <Button
+                                    id="btn-join-queue"
                                     variant="contained"
                                     color="primary"
                                     onClick={handleJoinQueue}

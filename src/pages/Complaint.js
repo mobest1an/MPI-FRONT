@@ -110,6 +110,7 @@ const Complaint = () => {
                                 <FormControl fullWidth sx={{ mb: 3 }}>
                                     <InputLabel id="convoy-select-label">Выберите конвой</InputLabel>
                                     <Select
+                                        id="select-convoy"
                                         labelId="convoy-select-label"
                                         value={selectedConvoy}
                                         label="Выберите конвой"
@@ -124,6 +125,7 @@ const Complaint = () => {
                                 </FormControl>
 
                                 <Button
+                                    id="btn-submit-complaint"
                                     variant="contained"
                                     color="error"
                                     onClick={handleSubmit}
@@ -141,6 +143,7 @@ const Complaint = () => {
                         )}
 
                         <Button
+                            id="btn-back-to-login"
                             variant="outlined"
                             onClick={handleBack}
                             fullWidth

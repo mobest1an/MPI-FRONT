@@ -149,6 +149,7 @@ const Commissar = () => {
                     <FormControl fullWidth sx={{ mb: 2 }}>
                         <InputLabel id="branch-select-label">Род войск</InputLabel>
                         <Select
+                            id="select-military-branch"
                             labelId="branch-select-label"
                             value={selectedBranch}
                             label="Род войск"
@@ -164,6 +165,7 @@ const Commissar = () => {
 
                     <Box sx={{ display: 'flex', gap: 2 }}>
                         <Button
+                            id="btn-send-to-waiting-room"
                             variant="contained"
                             color="primary"
                             onClick={handleSendToWaitingRoom}
@@ -177,6 +179,7 @@ const Commissar = () => {
                             )}
                         </Button>
                         <Button
+                            id="btn-reject-recruit"
                             variant="outlined"
                             color="error"
                             onClick={handleRejectRecruit}
@@ -208,6 +211,7 @@ const Commissar = () => {
                     )}
 
                     <Button
+                        id="btn-refresh-data"
                         variant="outlined"
                         onClick={fetchData}
                         disabled={loading.initial || loading.action}
@@ -245,6 +249,7 @@ const Commissar = () => {
                                                     </TableCell>
                                                     <TableCell align="right">
                                                         <Button
+                                                            id={`btn-summon-${item.username}`}
                                                             variant="contained"
                                                             color="primary"
                                                             onClick={() => handleSummon(item.username)}

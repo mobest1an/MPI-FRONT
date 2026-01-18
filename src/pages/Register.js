@@ -102,6 +102,7 @@ const Register = () => {
                         helperText={formik.touched.confirmPassword && formik.errors.confirmPassword}
                     />
                     <Button
+                        id="btn-register-submit"
                         type="submit"
                         fullWidth
                         variant="contained"
@@ -111,7 +112,7 @@ const Register = () => {
                         {loading ? <CircularProgress size={24} color="inherit" /> : 'Зарегистрироваться'}
                     </Button>
                     <Box sx={{ textAlign: 'center' }}>
-                        <Button onClick={() => navigate('/login')} variant="text" size="small">
+                        <Button id="btn-go-to-login" onClick={() => navigate('/login')} variant="text" size="small">
                             Уже есть аккаунт? Войти
                         </Button>
                     </Box>
