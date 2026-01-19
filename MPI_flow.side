@@ -319,6 +319,87 @@
         },
         {
           "command": "mouseOver",
+          "target": "id=btn-leave-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "1686ad72-122b-4f81-b151-1754e5ed24cf",
+          "targets": [
+            [
+              "id=btn-leave-queue",
+              "id"
+            ],
+            [
+              "css=#btn-leave-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-leave-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[3]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-leave-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "2b90cc2b-495c-40ad-945a-1c65516a6bf7",
+          "targets": [
+            [
+              "id=btn-leave-queue",
+              "id"
+            ],
+            [
+              "css=#btn-leave-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-leave-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[3]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "click",
+          "target": "id=btn-join-queue",
+          "value": "",
+          "insertBeforeLastCommand": false,
+          "frameLocation": "root",
+          "winHandleId": "root",
+          "id": "c9468f1b-89f6-40f2-9683-1a040d77426d",
+          "targets": [
+            [
+              "id=btn-join-queue",
+              "id"
+            ],
+            [
+              "css=#btn-join-queue",
+              "css:finder"
+            ],
+            [
+              "xpath=(//button[@id='btn-join-queue'])[1]",
+              "xpath:attributes"
+            ],
+            [
+              "xpath=(//div[@id='root']/div/div/div/div[2]/button)[1]",
+              "xpath:idRelative"
+            ]
+          ]
+        },
+        {
+          "command": "mouseOver",
           "target": "id=btn-logout",
           "value": "",
           "insertBeforeLastCommand": false,
