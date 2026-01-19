@@ -4497,8 +4497,15 @@
       ],
       "value": ""
     }, {
+      "id": "9dc3f5c9-4930-453b-988a-25b1bbd73c36",
+      "comment": "",
+      "command": "pause",
+      "target": "",
+      "targets": [],
+      "value": "100"
+    }, {
       "id": "c7e34067-62e8-4e8b-8bad-b85ca90a9ea2",
-      "comment": "Проверка цвета иконки регистрации",
+      "comment": "Проверка цвета кнопки взятия в работу",
       "command": "executeScript",
       "target": "var xp = \"//button[normalize-space(.)='Взять в работу']\"; var el = document.evaluate(xp, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue; return window.getComputedStyle(el).color;",
       "targets": [],
